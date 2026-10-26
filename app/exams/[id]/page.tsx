@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import questionsData from "@/data/questions.json";
 
 type ExamQuestion = {
     question: string;
@@ -9,29 +10,13 @@ type ExamQuestion = {
     correctText?: string;
 };
 
-const sampleQuestions: ExamQuestion[] = [
-    {
-        question: "OSI Model มีกี่ชั้น?",
-        options: ["4 ชั้น", "5 ชั้น", "7 ชั้น", "8 ชั้น"],
-        answer: 2,
-    },
-    {
-        question: "โปรโตคอลใดใช้สำหรับเปิดเว็บไซต์ทั่วไป?",
-        options: ["HTTP", "FTP", "SMTP", "SSH"],
-        answer: 0,
-    },
-    {
-        question: "อุปกรณ์ใดใช้เชื่อมต่อเครือข่ายต่างเครือข่าย?",
-        options: ["Keyboard", "Router", "Monitor", "Printer"],
-        answer: 1,
-    },
-];
+
 
 const EXAM_DURATION = 30 * 60;
 
 export default function ExamPage() {
     const [questions, setQuestions] =
-        useState<ExamQuestion[]>(sampleQuestions);
+        useState<ExamQuestion[]>(questionsData as ExamQuestion[]);
     const [loaded, setLoaded] = useState(false);
     const [current, setCurrent] = useState(0);
     const [answers, setAnswers] = useState<number[]>([]);
@@ -145,8 +130,8 @@ export default function ExamPage() {
 
                     <p
                         className={`rounded-lg px-4 py-2 font-bold ${timeLeft <= 60
-                                ? "bg-red-100 text-red-700"
-                                : "bg-blue-50 text-blue-700"
+                            ? "bg-red-100 text-red-700"
+                            : "bg-blue-50 text-blue-700"
                             }`}
                     >
                         เวลาเหลือ {String(minutes).padStart(2, "0")}:
@@ -180,8 +165,8 @@ export default function ExamPage() {
                                 })
                             }
                             className={`w-full rounded-xl border p-4 text-left ${answers[current] === index
-                                    ? "border-blue-600 bg-blue-50 text-blue-800"
-                                    : "border-slate-200 text-slate-900 hover:bg-slate-50"
+                                ? "border-blue-600 bg-blue-50 text-blue-800"
+                                : "border-slate-200 text-slate-900 hover:bg-slate-50"
                                 }`}
                         >
                             {["ก", "ข", "ค", "ง"][index]}. {option}
