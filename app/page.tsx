@@ -1,4 +1,6 @@
 
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-100 p-6">
@@ -30,9 +32,12 @@ export default function Home() {
             จำนวน 20 ข้อ · วิชาคอมพิวเตอร์
           </p>
 
-          <button className="mt-5 rounded-lg bg-blue-600 px-6 py-3 text-white hover:bg-blue-700">
+          <Link
+            href="/exams/1"
+            className="mt-5 inline-block rounded-lg bg-blue-600 px-6 py-3 text-white hover:bg-blue-700"
+          >
             เริ่มทำข้อสอบ
-          </button>
+          </Link>
         </div>
       </section>
     </main>
